@@ -7,7 +7,7 @@ paginate: true
 _paginate: false
 ---
 
-# <!--fit--> Marp CLI example
+# <!--fit--> Rust in 2019
 
 Hosting Marp slide deck on the web
 

@@ -4,8 +4,8 @@
   "alias": "slides.cyplo.dev",
   "builds": [
     {
-      "src": "package.json",
-      "use": "@now/static-build"
+      "src": "index.mdx",
+      "use": "@now/mdx-deck"
     }
   ]
 }
