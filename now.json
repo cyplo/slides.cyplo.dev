@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "name": "slides.cyplo.net",
-  "alias": "slides.cyplo.net",
+  "name": "slides.cyplo.dev",
+  "alias": "slides.cyplo.dev",
   "builds": [
     {
       "src": "package.json",
