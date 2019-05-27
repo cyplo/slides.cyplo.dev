@@ -1,7 +1,7 @@
 {
-  "name": "marp-cli-example",
+  "name": "Cyryl's slides",
   "version": "0.0.0",
-  "author": "Yuki Hattori <yukihattori1116@gmail.com>",
+  "author": "Cyryl Płotnicki",
   "license": "WTFPL",
   "private": true,
   "scripts": {
