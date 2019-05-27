@@ -1,5 +1,10 @@
 {
   "version": 2,
-  "name": "marp-cli-example",
-  "builds": [{ "src": "package.json", "use": "@now/static-build" }]
+  "name": "slides.cyplo.net",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build"
+    }
+  ]
 }
