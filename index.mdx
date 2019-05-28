@@ -1,43 +1,62 @@
-export { dark as theme } from 'mdx-deck/themes'
+export { condensed as theme } from '@mdx-deck/themes'
 import { Notes } from 'mdx-deck'
 
-# What makes you like a programming language ?
+
+# Rust in 2019
+
+---
+
+# Rust is the most loved language in the Stack Overflow survey.
+> 4th year in the row
 
 <Notes>
+Think of a Language that would make you feel that.
 Okay to interrupt
 What do you look for when choosing a programming tool ?
 What makes you "like" a programming language ?
-Discuss
+Think of tools, ecosystem, community.
 </Notes>
 
 ---
 
-# The most *loved* language of 2016
-
-Note:
-What makes the language *loved* ?
-The "ecosystem" => community much more than the language itself
-Trust in the tools, people, to get the job done
-Stackoverflow survey 2016
-
----
-
 # Rust has been built community-first
+```
+"I only work with languages starting with Ru- now" - Steve Klabnik
+"He isn't really your uncle" - Bodil Stokke
+```
 
-Note:
+<Notes>
 Rust founders were acutely aware of this, and added community tools early
 * github - development in the open, listening to feedback
 * rfc process, on github as well
 * forums, irc
-* "Only work with languages starting with `Ru`" - Steve Klabnik
+* podcasts
+* Rust thanks
+</Notes>
 
 ---
 
-# Package manager
+# Cargo: ~~Package~~ World manager
 
-Note:
+```
+$ cargo new hello
+   Created binary (application) `hello` package
+$ cd hello/
+$ cargo run
+   Compiling hello v0.1.0 (/home/cyryl/temp/hello)
+   Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+   Running `target/debug/hello`
+
+Hello, world!
+
+$ git status
+   On branch master
+```
+
+<Notes>
 A small but important step towards sanity
 Made by experience package manager makers
+</Notes>
 
 ---
 
