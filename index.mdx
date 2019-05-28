@@ -24,6 +24,11 @@ Think of tools, ecosystem, community.
 "I only work with languages starting with Ru- now" - Steve Klabnik
 "He isn't really your uncle" - Bodil Stokke
 ```
+* people really eager to help
+* lotta crates
+* rusty puns
+* documentation is excellent
+* new compiler version every 6 weeks, always backwards compatible
 
 <Notes>
 Rust founders were acutely aware of this, and added community tools early
@@ -32,11 +37,35 @@ Rust founders were acutely aware of this, and added community tools early
 * forums, irc
 * podcasts
 * Rust thanks
+
+It is very often. It is very stable as well.
+crater, big query
+
+"
+We will use a variation of the train model, first introduced in web browsers and now widely used to provide stability without stagnation:
+New work lands directly in the master branch.
+Each day, the last successful build from master becomes the new nightly release.
+Every six weeks, a beta branch is created from the current state of master, and the previous beta is promoted to be the new stable release.
+In short, there are three release channels – nightly, beta, and stable – with regular, frequent promotions from one channel to the next.
+"
 </Notes>
 
 ---
 
-# Cargo: ~~Package~~ World manager
+# Usage in the wild
+
+* CDNs - Fastly, Cloudflare, AWS through WASM
+* Critical paths in large codebases - VLC, Firefox, Dropbox
+* Your favourite CLI tools - ripgrep, fd, lsd, bat, etc
+* Embedded devices
+
+<Notes>
+"For a long while now I’ve been worried that the GNOME project would struggle to grow its contribution and stay attractive if it stuck to C in the long run (i.e. next 10-20 years)." - Alberto Ruiz
+</Notes>
+
+---
+
+## ~~Package~~  ~~Build~~ World manager
 
 ```
 $ cargo new hello
@@ -60,85 +89,114 @@ Made by experience package manager makers
 
 ---
 
-# Release train + stability
 
+# The usual stuff, yet quite nice
 
-Note:
-It is very often. It is very stable as well.
-crater, big query
-
-"
-We will use a variation of the train model, first introduced in web browsers and now widely used to provide stability without stagnation:
-New work lands directly in the master branch.
-Each day, the last successful build from master becomes the new nightly release.
-Every six weeks, a beta branch is created from the current state of master, and the previous beta is promoted to be the new stable release.
-In short, there are three release channels – nightly, beta, and stable – with regular, frequent promotions from one channel to the next.
-"
+```rust
+println!("{} days", 31);
+println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");
+println!("{subject} {verb} {object}",
+            object="the lazy dog",
+            subject="the quick brown fox",
+            verb="jumps over");
+```
 
 ---
 
-# Editors/IDEs
-
-Note:
-* VSCode
-* IntelliJ
-* Vim
-* others
-* linters
-* formatters
-* unit testing + integration testing
-
----
-
-# Usage in the wild
-
-Note:
-* VLC
-* Dropbox
-* Sentry / tilde
-* Firefox
-* FFI for critical (perf, security) parts a huge use case
-* general purpose tech stack coming up quickly though
-* growing community of existing legacy projects
-"For a long while now I’ve been worried that the GNOME project would struggle to grow its contribution and stay attractive if it stuck to C in the long run (i.e. next 10-20 years)." - Alberto Ruiz
+```rust
+println!("My name is {0}, {1} {0}", "Bond");
+```
+= >
+```
+error: invalid reference to positional argument 1 (there is 1 argument)
+  --> src/main.rs:31:31
+   |
+31 |     println!("My name is {0}, {1} {0}", "Bond");
+   |                               ^^^
+   |
+   = note: positional arguments are zero-based
+```
 
 ---
 
-# Rust - the language
+```rust
+enum WebEvent {
+    PageLoad,
+    PageUnload,
+    KeyPress(char),
+    Paste(String),
+    Click { x: i64, y: i64 },
+    OneMore
+}
 
-* no exceptions
-* no gc
-* no inheritance
-* no segfaults
-* no data races
-* no null
-
-Note:
-we haven't touched the language itself yet
-I think this is a modern language.
-Multiparadigm, functional, procedural
-
----
-
-# Fast, safe, concurrent.
-# Pick three.
-
-Note:
-same-process multithreaded shared-state is safe !
-
----
-
-# Everything is almost the same
-
-Note:
-you have package manager, tools support
-everything seems normal
-then suddenly
+fn inspect(event: WebEvent) {
+    match event {
+        WebEvent::PageLoad => println!("page loaded"),
+        WebEvent::PageUnload => println!("page unloaded"),
+        WebEvent::KeyPress(c) => println!("pressed '{}'.", c),
+        WebEvent::Paste(s) => println!("pasted \"{}\".", s),
+        WebEvent::Click { x, y } => {
+            println!("clicked at x={}, y={}.", x, y);
+        },
+    }
+}
+```
 
 ---
 
-# You move a value to a new owner by default
+```
+error[E0004]: non-exhaustive patterns: `OneMore` not covered
+  --> src/main.rs:17:11
+   |
+4  | / enum Message {
+5  | |     Quit,
+6  | |     ChangeColor(i32, i32, i32),
+7  | |     Move { x: i32, y: i32 },
+8  | |     Write(String),
+9  | |     OneMore
+   | |     ------- not covered
+10 | | }
+   | |_- `main::Message` defined here
+...
+17 |       match msg {
+   |             ^^^ pattern `OneMore` not covered
+   |
+   = help: ensure that all possible cases are being handled,
+     possibly by adding wildcards or more match arms
+```
 
+---
+
+## Everything is almost
+## exactly the same
+
+```rust
+fn take(v: Vec<i32>) {
+    // what happens here isn’t important.
+}
+
+fn main() {
+    let v = vec![1, 2, 3];
+    take(v);
+    println!("v[0] is: {}", v[0]);
+}
+```
+
+---
+
+# Then suddenly
+```
+error[E0382]: use of moved value: `v`
+  --> src/main.rs:10:29
+   |
+8  |     take(v);
+   |          - value moved here
+9  |
+10 |     println!("v[0] is: {}", v[0]);
+   |                             ^ value used here after move
+```
+
+<Notes>
 Note:
 This is different !
 https://play.rust-lang.org/?gist=ef8d8f5bac2383e5e3bd0aaa4c593650&version=stable&backtrace=0
@@ -147,6 +205,31 @@ Vec has a 'pointer' on the stack to stuff on the heap
 Rust disallows having two pointers to the same stuff at the same time
 
 https://doc.rust-lang.org/stable/book/ownership.html
+</Notes>
+
+---
+
+# Rust - the language
+
+```
+Fast, safe, concurrent.
+Pick three.
+```
+
+* no gc
+* no inheritance
+* no segfaults
+* no data races - sharing variables between threads is safe !
+* no null
+* no exceptions
+* predictable latency
+* predictable memory usage
+
+<Notes>
+we haven't touched the language itself yet
+I think this is a modern language.
+Multiparadigm, functional, procedural
+</Notes>
 
 ---
 
@@ -175,53 +258,13 @@ https://play.rust-lang.org/?gist=9051cca0030b2ad3f4e89d5e92e7961f&version=stable
 
 ---
 
-# Let's build an echo server
+# Summary
 
-Note:
+* unique memory model
+* steep initial learning curve - pair program !
+* powerful ecosystem
+* code ages well
+* cool and weird and useful
+* you should try it
 
-* https://crates.io/
-* mio
-* tokio
-* hyper
-* iron (similar to sinatra)
-
----
-
-# Need for Rust consulting on the rise
-
-Note:
-
-Friends of Rust
-Rust commercial user survey - https://internals.rust-lang.org/t/2016-rust-commercial-user-survey-results/4317
-Rust Survey - https://blog.rust-lang.org/2016/06/30/State-of-Rust-Survey-2016.html
-
-* Consulting needs
-
-"
-I'm a bit confused here. On the other hand, we have an ample amount of experienced Rust people that would love to do Rust jobs/trainings, and don't find any opportunites. But they are mainly freelance or running their business. [1][2]
-
-It seems to me that these companies want to only work with their inside teams because someone came up with the idea to use Rust. It seems odd that the consulting market doesn't happen, though, even if it would make sense to hire externals for a PoC for example. It's not an unusual pattern though, my usual bread-and-butter software (Elasticsearch) is only now developing a freelance/consulting market.
-
-Would anyone know ways to kickstart that?
-"
-
----
-
-# Learning materials
-
-* rustlings
-* into_rust
-* the book v1 and v2
-* rust by example
-* this week in rust
-* conference videos
-
----
-
-by `@cyplo`
-
-Note:
-questions ?
-
-
-
+```
