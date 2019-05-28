@@ -1,4 +1,4 @@
-export { condensed as theme } from '@mdx-deck/themes'
+export { default as theme } from './theme'
 import { Notes } from 'mdx-deck'
 
 
@@ -66,7 +66,7 @@ In short, there are three release channels – nightly, beta, and stable – wit
 
 ## ~~Package~~  ~~Build~~ World manager
 
-```
+```bash
 $ cargo new hello
    Created binary (application) `hello` package
 $ cd hello/
@@ -106,7 +106,7 @@ println!("{subject} {verb} {object}",
 println!("My name is {0}, {1} {0}", "Bond");
 ```
 = >
-```
+```text
 error: invalid reference to positional argument 1 (there is 1 argument)
   --> src/main.rs:31:31
    |
@@ -143,7 +143,7 @@ fn inspect(event: WebEvent) {
 
 ---
 
-```
+```text
 error[E0004]: non-exhaustive patterns: `OneMore` not covered
   --> src/main.rs:17:11
    |
