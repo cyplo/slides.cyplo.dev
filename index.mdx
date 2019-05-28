@@ -19,16 +19,15 @@ Think of tools, ecosystem, community.
 
 ---
 
-# Rust has been built community-first
-```
-"I only work with languages starting with Ru- now" - Steve Klabnik
-"He isn't really your uncle" - Bodil Stokke
-```
+# Community-first
+
 * people really eager to help
 * lotta crates
 * rusty puns
 * documentation is excellent
 * new compiler version every 6 weeks, always backwards compatible
+
+"I only work with languages with names starting with `Ru-` now" < Steve Klabnik
 
 <Notes>
 Rust founders were acutely aware of this, and added community tools early
@@ -163,6 +162,19 @@ error[E0004]: non-exhaustive patterns: `OneMore` not covered
    |
    = help: ensure that all possible cases are being handled,
      possibly by adding wildcards or more match arms
+```
+
+---
+
+```rust
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("username.txt")?;
+    let mut s = String::new();
+
+    f.read_to_string(&mut s)?;
+
+    Ok(s)
+}
 ```
 
 ---
