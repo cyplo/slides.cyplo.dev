@@ -1,13 +1,13 @@
 export { default as theme } from './theme'
 import { Notes } from 'mdx-deck'
+import { Split } from 'mdx-deck/layouts'
 
 
 # Rust in 2019
 
 ---
 
-# Rust is the most loved language in the Stack Overflow survey.
-> 4th year in the row
+# The most loved language in the Stack Overflow survey.
 
 <Notes>
 Think of a Language that would make you feel that.
@@ -21,6 +21,7 @@ Think of tools, ecosystem, community.
 
 # Community-first
 
+* tools are a part of the experience
 * people really eager to help
 * lotta crates
 * rusty puns
@@ -89,7 +90,7 @@ Made by experience package manager makers
 ---
 
 
-# The usual stuff, yet quite nice
+# The usual
 
 ```rust
 println!("{} days", 31);
@@ -141,6 +142,13 @@ fn inspect(event: WebEvent) {
 }
 ```
 
+<Notes>
+Let's spend a bit more time on this slide
+You can read it not knowing Rust
+Let's take it in, read every line, see if you understand what's going on
+Questions ?
+</Notes>
+
 ---
 
 ```text
@@ -177,96 +185,34 @@ fn read_username_from_file() -> Result<String, io::Error> {
 }
 ```
 
----
-
-## Everything is almost
-## exactly the same
-
-```rust
-fn take(v: Vec<i32>) {
-    // what happens here isn’t important.
-}
-
-fn main() {
-    let v = vec![1, 2, 3];
-    take(v);
-    println!("v[0] is: {}", v[0]);
-}
-```
-
----
-
-# Then suddenly
-```
-error[E0382]: use of moved value: `v`
-  --> src/main.rs:10:29
-   |
-8  |     take(v);
-   |          - value moved here
-9  |
-10 |     println!("v[0] is: {}", v[0]);
-   |                             ^ value used here after move
-```
-
 <Notes>
-Note:
-This is different !
-https://play.rust-lang.org/?gist=ef8d8f5bac2383e5e3bd0aaa4c593650&version=stable&backtrace=0
-
-Vec has a 'pointer' on the stack to stuff on the heap
-Rust disallows having two pointers to the same stuff at the same time
-
-https://doc.rust-lang.org/stable/book/ownership.html
+What enums are useful for
+Representing results
+Nil/Null/Handle without a value is not a thing in Rust
 </Notes>
 
 ---
 
-# Rust - the language
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=e0a264f8c50e661524ecb8b2ea679722
 
-```
-Fast, safe, concurrent.
-Pick three.
-```
+---
+
+# Let's see some real-life projects
+
+---
+
+# Summary
 
 * no gc
 * no inheritance
-* no segfaults
-* no data races - sharing variables between threads is safe !
+* no segfaults*
+* no data races*
 * no null
 * no exceptions
 * predictable latency
 * predictable memory usage
 
-<Notes>
-we haven't touched the language itself yet
-I think this is a modern language.
-Multiparadigm, functional, procedural
-</Notes>
-
----
-
-# But there are `Copy` types
-
-Note:
-https://play.rust-lang.org/?gist=f717140e7c1ff276161588dc07ff4a4b&version=stable&backtrace=0
-
----
-
-# Which in reality, are `Traits`
-
-Note:
-http://rustbyexample.com/trait.html
-https://doc.rust-lang.org/stable/book/traits.html
-
----
-
-# And Borrowing
-
-Note:
-
-https://doc.rust-lang.org/stable/book/references-and-borrowing.html
-http://rustbyexample.com/scope/borrow.html
-https://play.rust-lang.org/?gist=9051cca0030b2ad3f4e89d5e92e7961f&version=stable&backtrace=0
+##### *when you don't use `unsafe` blocks
 
 ---
 
