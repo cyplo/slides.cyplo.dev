@@ -176,7 +176,7 @@ error[E0004]: non-exhaustive patterns: `OneMore` not covered
 
 ```rust
 fn read_username_from_file() -> Result<String, io::Error> {
-    let mut f = File::open("username.txt")?;
+    let f = File::open("username.txt")?;
     let mut s = String::new();
 
     f.read_to_string(&mut s)?;
@@ -193,15 +193,11 @@ Nil/Null/Handle without a value is not a thing in Rust
 
 ---
 
-https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=e0a264f8c50e661524ecb8b2ea679722
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d946578e07ffa0f34a9fcc66a13a61e9
 
 ---
 
-# Let's see some real-life projects
-
----
-
-# Summary
+# Rust
 
 * no gc
 * no inheritance
@@ -211,18 +207,18 @@ https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=e0a264f8
 * no exceptions
 * predictable latency
 * predictable memory usage
+* puns
 
 ##### *when you don't use `unsafe` blocks
 
 ---
-
-# Summary
 
 * unique memory model
 * steep initial learning curve - pair program !
 * powerful ecosystem
 * code ages well
 * cool and weird and useful
+* nice people
 * you should try it
 
 ---
@@ -243,5 +239,9 @@ Depending on your learning style you might like
 - [contribute back](https://www.rustaceans.org/findwork/starters) !
 - don't forget to join the [user forums](http://users.rust-lang.org/) for the warm welcome.
 - let's pair on Rust ! :)
+
+---
+
+# Thank you ! :)
 
 ---
