@@ -1,11 +1,5 @@
 {
   "version": 2,
   "name": "slides.cyplo.dev",
-  "alias": "slides.cyplo.dev",
-  "builds": [
-    {
-      "src": "index.mdx",
-      "use": "@now/mdx-deck"
-    }
-  ]
+  "alias": "slides.cyplo.dev"
 }
