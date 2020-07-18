@@ -5,8 +5,7 @@ import Layout from "../components/layout"
 
 const IndexPage = () => (
   <Layout>
-    <Link to="/hello/">Hello</Link> <br />
-    <Link to="/hello-copy/">Hello copy</Link> <br />
+    <Link to="/rust2019/">Intro to Rust - 2019</Link> <br />
   </Layout>
 )
 
