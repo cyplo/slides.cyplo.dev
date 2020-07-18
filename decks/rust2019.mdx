@@ -1,6 +1,8 @@
-import myTheme from './theme'
+import { Split } from 'mdx-deck'
+import peninsula from './theme'
+import { CodeSurfer } from 'code-surfer'
 
-export const theme = myTheme
+export const theme = peninsula
 
 # Rust in 2019
 
@@ -25,12 +27,10 @@ Think of tools, ecosystem, community.
 * lotta crates
 * rusty puns
 * documentation is excellent
-* new compiler version every 6 weeks, always backwards compatible
-
-    "I only work with languages with names starting with `Ru-` now" < Steve Klabnik
 
 <Notes>
 
+* "I only work with languages with names starting with `Ru-` now" < Steve Klabnik
 Rust founders were acutely aware of this, and added community tools early
 * github - development in the open, listening to feedback
 * rfc process, on github as well
@@ -38,8 +38,18 @@ Rust founders were acutely aware of this, and added community tools early
 * podcasts
 * Rust thanks
 
-It is very often. It is very stable as well.
-crater, big query
+</Notes>
+
+---
+
+# Fast paced but stable release cycle
+
+* new compiler version every 6 weeks
+* always backwards compatible
+
+<Notes>
+
+* crater, big query
 
 We will use a variation of the train model, first introduced in web browsers and now widely used to provide stability without stagnation:
 New work lands directly in the master branch.
@@ -62,7 +72,7 @@ In short, there are three release channels – nightly, beta, and stable – wit
     "For a long while now I’ve been worried that the GNOME project would struggle to grow its contribution and stay attractive if it stuck to C in the long run (i.e. next 10-20 years)." - Alberto Ruiz
     </Notes>
 
-    ---
+---
 
 ## ~~Package~~  ~~Build~~ World manager
 
@@ -192,7 +202,13 @@ Nil/Null/Handle without a value is not a thing in Rust
 
 ---
 
-https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d946578e07ffa0f34a9fcc66a13a61e9
+# Real-world example - using playground
+
+<Notes>
+
+https://play.rust-lang.org/?version=stable&edition=2018&gist=d946578e07ffa0f34a9fcc66a13a61e9
+
+</Notes>
 
 ---
 
@@ -212,6 +228,8 @@ https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d946578e
 
 ---
 
+# Summary
+
 * unique memory model
 * steep initial learning curve - pair program !
 * powerful ecosystem
@@ -222,27 +240,27 @@ https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d946578e
 * nice people
 * you should try it
 
-    ---
+---
 
-    Depending on your learning style, you might like some better than the other;
+# Further reading/exercises
 
-- [Rustlings](https://github.com/rustlings/rustlings) - This is a good set of starter exercises if you want to have a feeling for the language - have links to relevant book sections for each exercises so you can either start with the book or trying to figure it out yourself first. Ah, and it uses the Playground, which means you don't need to install anything on your machine to start.
-- [The book itself](https://doc.rust-lang.org/stable/book/second-edition/index.html) - Second edition. Good when you want a solid baseline understanding of the language first.
-- [Rust by example](https://doc.rust-lang.org/stable/rust-by-example/) - An set of examples that are runnable within a browser, intertwined with explanatory prose.
-- [Exercism](http://exercism.io/)’s Rust exercises - a CLI app that guides you through exercises of increasing difficulty.
-- [IntoRust](http://intorust.com/) - A set of short screencasts for the foundational topics.
+#### Depending on your learning style, you might like some better than the other;
 
-    ---
-
-- [This week in Rust](https://this-week-in-rust.org/)
-- [Awesome Rust](https://rust.libhunt.com/)
-
-- [contribute back](https://www.rustaceans.org/findwork/starters) !
-- don't forget to join the [user forums](http://users.rust-lang.org/) for the warm welcome.
-- let's pair on Rust ! :)
-
-    ---
-
-# Thank you ! :)
+* [The book itself](https://doc.rust-lang.org/stable/book/second-edition/index.html)
+* [Rustlings](https://github.com/rustlings/rustlings) - good set of starter exercises
+* [Rust by example](https://doc.rust-lang.org/stable/rust-by-example/)
+* [Exercism](http://exercism.io/) - gives you failing unit tests
+* [IntoRust](http://intorust.com/) - screencasts on some jfoundational topics.
 
 ---
+
+# Staying up to date and contributing back
+
+* [This week in Rust](https://this-week-in-rust.org/)
+* [Awesome Rust](https://rust.libhunt.com/)
+* [contribute back](https://www.rustaceans.org/findwork/starters) !
+* join the [user forums](http://users.rust-lang.org/) for the warm welcome.
+
+---
+
+# Thank you ! :)
