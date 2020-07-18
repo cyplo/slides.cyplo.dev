@@ -1,6 +1,244 @@
-# Hello from copy mdx!
+# Rust in 2019
 
 ---
 
-## Beep boop
+# The most loved language in the Stack Overflow survey.
 
+<Notes>
+Think of a Language that would make you feel that.
+Okay to interrupt
+What do you look for when choosing a programming tool ?
+What makes you "like" a programming language ?
+Think of tools, ecosystem, community.
+</Notes>
+
+---
+
+# Community-first
+
+* tools are a part of the experience
+* people really eager to help
+* lotta crates
+* rusty puns
+* documentation is excellent
+* new compiler version every 6 weeks, always backwards compatible
+
+    "I only work with languages with names starting with `Ru-` now" < Steve Klabnik
+
+<Notes>
+
+Rust founders were acutely aware of this, and added community tools early
+* github - development in the open, listening to feedback
+* rfc process, on github as well
+* forums, irc
+* podcasts
+* Rust thanks
+
+It is very often. It is very stable as well.
+crater, big query
+
+We will use a variation of the train model, first introduced in web browsers and now widely used to provide stability without stagnation:
+New work lands directly in the master branch.
+Each day, the last successful build from master becomes the new nightly release.
+Every six weeks, a beta branch is created from the current state of master, and the previous beta is promoted to be the new stable release.
+In short, there are three release channels – nightly, beta, and stable – with regular, frequent promotions from one channel to the next.
+
+</Notes>
+
+---
+
+# Usage in the wild
+
+* CDNs - Fastly, Cloudflare, AWS through WASM
+* Critical paths in large codebases - VLC, Firefox, Dropbox
+* Your favourite CLI tools - ripgrep, fd, lsd, bat, etc
+* Embedded devices
+
+    <Notes>
+    "For a long while now I’ve been worried that the GNOME project would struggle to grow its contribution and stay attractive if it stuck to C in the long run (i.e. next 10-20 years)." - Alberto Ruiz
+    </Notes>
+
+    ---
+
+## ~~Package~~  ~~Build~~ World manager
+
+```bash
+$ cargo new hello
+Created binary (application) `hello` package
+$ cd hello/
+$ cargo run
+Compiling hello v0.1.0 (/home/cyryl/temp/hello)
+Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+Running `target/debug/hello`
+
+Hello, world!
+
+$ git status
+On branch master
+```
+
+<Notes>
+A small but important step towards sanity
+Made by experience package manager makers
+</Notes>
+
+---
+
+
+# The usual
+
+```rust
+println!("{} days", 31);
+println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");
+println!("{subject} {verb} {object}",
+object="the lazy dog",
+subject="the quick brown fox",
+verb="jumps over");
+```
+
+---
+
+```rust
+println!("My name is {0}, {1} {0}", "Bond");
+```
+= >
+```text
+error: invalid reference to positional argument 1 (there is 1 argument)
+--> src/main.rs:31:31
+|
+31 |     println!("My name is {0}, {1} {0}", "Bond");
+|                               ^^^
+|
+= note: positional arguments are zero-based
+```
+
+---
+
+```rust
+enum WebEvent {
+PageLoad,
+PageUnload,
+KeyPress(char),
+Paste(String),
+Click { x: i64, y: i64 },
+OneMore
+}
+
+fn inspect(event: WebEvent) {
+match event {
+WebEvent::PageLoad => println!("page loaded"),
+WebEvent::PageUnload => println!("page unloaded"),
+WebEvent::KeyPress(c) => println!("pressed '{}'.", c),
+WebEvent::Paste(s) => println!("pasted \"{}\".", s),
+WebEvent::Click { x, y } => {
+println!("clicked at x={}, y={}.", x, y);
+},
+}
+}
+```
+
+<Notes>
+Let's spend a bit more time on this slide
+You can read it not knowing Rust
+Let's take it in, read every line, see if you understand what's going on
+Questions ?
+</Notes>
+
+---
+
+```text
+error[E0004]: non-exhaustive patterns: `OneMore` not covered
+--> src/main.rs:17:11
+|
+4  | / enum Message {
+5  | |     Quit,
+6  | |     ChangeColor(i32, i32, i32),
+7  | |     Move { x: i32, y: i32 },
+8  | |     Write(String),
+9  | |     OneMore
+| |     ------- not covered
+10 | | }
+| |_- `main::Message` defined here
+...
+17 |       match msg {
+|             ^^^ pattern `OneMore` not covered
+|
+= help: ensure that all possible cases are being handled,
+possibly by adding wildcards or more match arms
+```
+
+---
+
+```rust
+fn read_username_from_file() -> Result<String, io::Error> {
+let f = File::open("username.txt")?;
+let mut s = String::new();
+
+f.read_to_string(&mut s)?;
+
+Ok(s)
+}
+```
+
+<Notes>
+What enums are useful for
+Representing results
+Nil/Null/Handle without a value is not a thing in Rust
+</Notes>
+
+---
+
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d946578e07ffa0f34a9fcc66a13a61e9
+
+---
+
+# Rust
+
+* no gc
+* no inheritance
+* no segfaults*
+* no data races*
+* no null
+* no exceptions
+* predictable latency
+* predictable memory usage
+* puns
+
+##### *when you don't use `unsafe` blocks
+
+---
+
+* unique memory model
+* steep initial learning curve - pair program !
+* powerful ecosystem
+* code ages well
+* compiler is your friend
+* code generation is easy (safe macros, build.rs)
+* cool and weird and useful
+* nice people
+* you should try it
+
+    ---
+
+    Depending on your learning style, you might like some better than the other;
+
+- [Rustlings](https://github.com/rustlings/rustlings) - This is a good set of starter exercises if you want to have a feeling for the language - have links to relevant book sections for each exercises so you can either start with the book or trying to figure it out yourself first. Ah, and it uses the Playground, which means you don't need to install anything on your machine to start.
+- [The book itself](https://doc.rust-lang.org/stable/book/second-edition/index.html) - Second edition. Good when you want a solid baseline understanding of the language first.
+- [Rust by example](https://doc.rust-lang.org/stable/rust-by-example/) - An set of examples that are runnable within a browser, intertwined with explanatory prose.
+- [Exercism](http://exercism.io/)’s Rust exercises - a CLI app that guides you through exercises of increasing difficulty.
+- [IntoRust](http://intorust.com/) - A set of short screencasts for the foundational topics.
+
+    ---
+
+- [This week in Rust](https://this-week-in-rust.org/)
+- [Awesome Rust](https://rust.libhunt.com/)
+
+- [contribute back](https://www.rustaceans.org/findwork/starters) !
+- don't forget to join the [user forums](http://users.rust-lang.org/) for the warm welcome.
+- let's pair on Rust ! :)
+
+    ---
+
+# Thank you ! :)
+
+---
