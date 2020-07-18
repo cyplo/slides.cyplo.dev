@@ -9,6 +9,12 @@ module.exports = {
     `gatsby-plugin-mdx`,
     `gatsby-theme-mdx-deck`,
     {
+      resolve: `gatsby-plugin-compile-es6-packages`,
+      options: {
+        modules: ["@mdx-deck/gatsby-plugin"],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
