@@ -19,7 +19,7 @@
         "gatsby-plugin-zeit-now": "^0.3.0",
         "gatsby-source-filesystem": "^2.3.14",
         "gatsby-theme-mdx-deck": "^4.1.0",
-        "gatsby-transformer-sharp": "^2.5.12",
+        "gatsby-transformer-sharp": "^2.8.0",
         "mdx-deck": "^4.1.1",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
