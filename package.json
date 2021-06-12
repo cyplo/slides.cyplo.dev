@@ -15,7 +15,7 @@
         "gatsby-plugin-mdx": "^1.2.27",
         "gatsby-plugin-offline": "^3.10.2",
         "gatsby-plugin-react-helmet": "^3.3.6",
-        "gatsby-plugin-sharp": "^2.6.14",
+        "gatsby-plugin-sharp": "^2.14.4",
         "gatsby-plugin-zeit-now": "^0.3.0",
         "gatsby-source-filesystem": "^2.3.14",
         "gatsby-theme-mdx-deck": "^4.1.0",
