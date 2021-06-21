@@ -7894,10 +7894,10 @@ gatsby-plugin-utils@^0.9.0:
   dependencies:
     joi "^17.2.1"
 
-gatsby-plugin-zeit-now@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-zeit-now/-/gatsby-plugin-zeit-now-0.3.0.tgz#532adf24b6311d4f654ec967ad3467140b6cb077"
-  integrity sha512-7lNe/MRWg7ZVjMY147MDFHmypWfDE734aynV/n6f5WiIVWG5EggUPKWUIFLKVtjQsR8o3dbTUCjSOYY4fs2cZg==
+gatsby-plugin-zeit-now@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-zeit-now/-/gatsby-plugin-zeit-now-0.4.0.tgz#787387df83cf60d284c842274725b911bdf1738d"
+  integrity sha512-d22KsEbQeajdl3GJOodchTeKoqh9+xbFt0O4zaKdNVLMZQDwNNTFArCZnJyVDf35Y5TVlR7kOicp6X5DwDr6SA==
 
 gatsby-react-router-scroll@^3.7.0:
   version "3.7.0"
