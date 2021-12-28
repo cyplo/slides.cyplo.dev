@@ -21,7 +21,7 @@
         "gatsby-theme-mdx-deck": "^4.1.0",
         "gatsby-transformer-sharp": "^2.12.1",
         "mdx-deck": "^4.1.1",
-        "prop-types": "^15.7.2",
+        "prop-types": "^15.8.0",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0"
